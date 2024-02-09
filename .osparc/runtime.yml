@@ -11,7 +11,7 @@ settings:
     type: Resources
     value:
       Limits:
-        NanoCPUs: 8000000000 
+        NanoCPUs: 6000000000 
         MemoryBytes: 32000000000
         GenericResources:
           - DiscreteResourceSpec:
