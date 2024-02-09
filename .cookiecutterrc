@@ -1,0 +1,41 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:itisfoundation/cookiecutter-osparc-service project-path
+#
+# See:
+#    https://pypi.python.org/pypi/cookiepatcher
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=project-path/.cookiecutterrc gh:itisfoundation/cookiecutter-osparc-service
+#
+
+default_context:
+
+    _output_dir:               '/home/iavarone/tests'
+    _template:                 '/home/iavarone/repos/cookiecutter-osparc-jupyterlab-service/'
+    author_affiliation:        "IT'IS Foundation"
+    author_email:              'iavarone@itis.swiss'
+    author_name:               'Elisabetta Iavarone'
+    contact_email:             'iavarone@itis.swiss'
+    docker_base:               'quay.io/jupyter/minimal-notebook:7285848c0a11@sha256:1f43611f561bd6e8480f4bc03d0c56ce56b6657f1b21cd2bfb2debbb54973164'
+    git_repo:                  'github'
+    git_username:              'elisabettai'
+    install_custom_software:   'no'
+    install_other_kernel:      'no'
+    install_python_kernel:     'yes'
+    number_of_inputs:          '4'
+    number_of_outputs:         '4'
+    project_name:              'AxonDeepSeg in JupyterLab'
+    project_package_name:      'jupyter_axondeepseg'
+    project_short_description: 'AxonDeepSeg in JupyterLab'
+    project_slug:              'jupyter-axondeepseg'
+    release_date:              '2024'
+    resources_CPU_nanoCPUs:    '4000000000'
+    resources_RAM_nanoBytes:   '16000000000'
+    version:                   '1.0.0'

@@ -1,0 +1,5 @@
+version: "3.7"
+services:
+  jupyter-axondeepseg:
+    build:
+      dockerfile: Dockerfile
