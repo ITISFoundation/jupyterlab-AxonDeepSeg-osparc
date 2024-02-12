@@ -12,6 +12,15 @@ echo "$INFO" "  Workdir :$(pwd)"
 echo "$INFO" "trust all notebooks in path..."
 find "${NOTEBOOK_BASE_DIR}" -name '*.ipynb' -type f | xargs -I % /bin/bash -c 'jupyter trust "%" || true' || true
 
+
+
+# Download axondeepseg models if not there yet
+if [ ! -d "/home/${NB_USER}/work/workspace/AxonDeepSeg/models" ] 
+then
+    echo "No AxonDeepSeg models in workspace, downloading them..."
+    download_models
+fi
+
 # Configure
 # Prevents notebook to open in separate tab
 mkdir --parents "$HOME/.jupyter/custom"
