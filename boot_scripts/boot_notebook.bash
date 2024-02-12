@@ -12,7 +12,7 @@ echo "$INFO" "  Workdir :$(pwd)"
 echo "$INFO" "trust all notebooks in path..."
 find "${NOTEBOOK_BASE_DIR}" -name '*.ipynb' -type f | xargs -I % /bin/bash -c 'jupyter trust "%" || true' || true
 
-# Download axondeepseg models if not there yet
+# Copy source code and models if not there yet
 if [ ! -d "/home/${NB_USER}/work/workspace/axondeepseg/AxonDeepSeg/models" ] 
 then
     echo "No AxonDeepSeg models in workspace, copying them and source code to workspace..."
