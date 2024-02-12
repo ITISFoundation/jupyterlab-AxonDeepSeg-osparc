@@ -58,15 +58,21 @@ else
     echo "adding $NB_USER to group $CONTAINER_GROUPNAME..."
     usermod --append --groups "$CONTAINER_GROUPNAME" "$NB_USER" 
     
-    echo "Chainging owner ship of state directory /home/${NB_USER}/work/workspace"
+    echo "Changing ownership of state directory /home/${NB_USER}/work/workspace"
     chown --recursive "$NB_USER" "/home/${NB_USER}/work/workspace"
-    echo "Chainging owner ship of state directory ${DY_SIDECAR_PATH_INPUTS}"
+    echo "Changing ownership of state directory ${DY_SIDECAR_PATH_INPUTS}"
     chown --recursive "$NB_USER" "${DY_SIDECAR_PATH_INPUTS}"
-    echo "Chainging owner ship of state directory ${DY_SIDECAR_PATH_OUTPUTS}"
+    echo "Changing ownership of state directory ${DY_SIDECAR_PATH_OUTPUTS}"
     chown --recursive "$NB_USER" "${DY_SIDECAR_PATH_OUTPUTS}"
 fi
 
 mv "${NOTEBOOK_BASE_DIR}/README.ipynb" "${NOTEBOOK_BASE_DIR}/workspace/README.ipynb" || true
+
+if [ ! -f "${NOTEBOOK_BASE_DIR}/workspace/README.ipynb" ] # Allow users to modify the README.ipynb, so do not copy if it already exists
+then
+    mv "${NOTEBOOK_BASE_DIR}/README.ipynb" "${NOTEBOOK_BASE_DIR}/workspace/README.ipynb" || true
+fi 
+
 
 echo "Removing write permissions from users in placed where they are not allowed to write:"
 echo "- /home/${NB_USER}/work"

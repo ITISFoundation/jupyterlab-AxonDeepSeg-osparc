@@ -2,7 +2,7 @@ name: AxonDeepSeg in JupyterLab
 key: simcore/services/dynamic/jupyter-axondeepseg
 type: dynamic
 integration-version: 2.0.0
-version: 1.0.0
+version: 1.0.1
 description: AxonDeepSeg in JupyterLab
 contact: iavarone@itis.swiss
 thumbnail: https://raw.githubusercontent.com/axondeepseg/doc-figures/main/index/fig2.png
