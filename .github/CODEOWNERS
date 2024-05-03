@@ -9,7 +9,7 @@ Dockerfile          @elisabettai
 Makefile            @elisabettai
 
 # NOTE: '/' denotes the root of the repository
-/.github/            @pcrespov @GitHK
-/.osparc/            @pcrespov @GitHK @elisabettai
+/.github/            @elisabettai
+/.osparc/            @elisabettai
 /kernels/            @elisabettai
-/docker/             @pcrespov @GitHK
+/docker/             @elisabettai @GitHK

@@ -55,7 +55,8 @@ cat > .jupyter_config.json <<EOF
         "webbrowser_open_new": 0
     },
     "KernelSpecManager": {
-        "allowed_kernelspecs": ["ads_venv"]
+        "allowed_kernelspecs": ["ads_venv"],
+         "delete_to_trash": false
     }
 }
 EOF

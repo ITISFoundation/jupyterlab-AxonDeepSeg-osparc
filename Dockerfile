@@ -199,8 +199,10 @@ RUN git clone https://github.com/neuropoly/axondeepseg.git && \
 # "Activate" the conda env
 SHELL ["conda", "run", "-n", "ads_venv", "/bin/bash", "-c" ]
 
+#opencv requested by ACA
 RUN  cd axondeepseg && \
      pip install -e . plugins/ && \
+     pip install opencv-python && \ 
      axondeepseg_test
 
 # Create a jupyter kernel for AxonDeepSeg
