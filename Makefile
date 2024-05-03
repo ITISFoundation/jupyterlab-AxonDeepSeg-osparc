@@ -8,8 +8,8 @@ export VCS_REF    := $(shell git rev-parse --short HEAD 2> /dev/null || echo unv
 export VCS_STATUS := $(if $(shell git status -s 2> /dev/null || echo unversioned repo),'modified/untracked','clean')
 export BUILD_DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-export DOCKER_IMAGE_NAME ?= axondeepseg-in-jupyterlab
-export DOCKER_IMAGE_TAG ?= 1.0.1
+export DOCKER_IMAGE_NAME ?= axondeepseg-jupyterlab
+export DOCKER_IMAGE_TAG ?= 1.0.2
 
 OSPARC_DIR:=$(CURDIR)/.osparc
 
@@ -63,12 +63,12 @@ compose-spec: ## runs ooil to assemble the docker-compose.yml file
 		sh -c "cd /${DOCKER_IMAGE_NAME} && ooil compose"
 
 build: | compose-spec	## build docker image
-	docker-compose build
+	docker compose build
 
 # To test built service locally -------------------------------------------------------------------------
 .PHONY: run-local
 run-local:	## runs image with local configuration
-	docker-compose --file docker-compose-local.yml up
+	docker compose --file docker-compose-local.yml up
 
 .PHONY: publish-local
 publish-local: ## push to local oSPARC throw away registry to test integration
