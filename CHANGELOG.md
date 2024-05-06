@@ -1,4 +1,10 @@
 # Changelog
+
+## [1.0.2] - 2024-05
+### Fixed
+- Do not create `.Trash-1000` folder (caused service to fail after re-opening a study) ([#1296](https://github.com/ITISFoundation/osparc-issues/issues/1296))
+- Remove partially-installed latex extension
+
 ## [1.0.1] - 2024-02
 - Copy source code and models to workspace if not there yest
 
