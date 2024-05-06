@@ -29,6 +29,7 @@ define(['base/js/namespace'], function(Jupyter){
 EOF
 
 # SEE https://jupyter-server.readthedocs.io/en/latest/other/full-config.html
+# For LapApp tornado_settings, see https://discourse.jupyter.org/t/jupyter-lab-4-0-6-error-on-startup-about-yarn-configuration-and-worker-threads/21859/2
 cat > .jupyter_config.json <<EOF
 {
     "FileCheckpoints": {
@@ -45,7 +46,7 @@ cat > .jupyter_config.json <<EOF
         "disable_check_xsrf": true,
         "extra_static_paths": ["/static"],
         "ip": "0.0.0.0",
-        "notebook_dir": "${NOTEBOOK_BASE_DIR}",
+        "root_dir": "${NOTEBOOK_BASE_DIR}",
         "open_browser": false,
         "port": 8888,
         "preferred_dir": "${NOTEBOOK_BASE_DIR}/workspace/",
@@ -54,9 +55,18 @@ cat > .jupyter_config.json <<EOF
         "token": "${NOTEBOOK_TOKEN}",
         "webbrowser_open_new": 0
     },
+    "LabApp": {
+        "tornado_settings": {
+            "page_config_data": {
+                "buildCheck": false,
+                "buildAvailable": false,
+            },
     "KernelSpecManager": {
-        "allowed_kernelspecs": ["ads_venv"],
-         "delete_to_trash": false
+        "allowed_kernelspecs": ["ads_venv"]
+    },
+    "FileContentsManager": {
+        "preferred_dir": "${NOTEBOOK_BASE_DIR}/workspace/",
+        "delete_to_trash": false
     }
 }
 EOF
@@ -91,5 +101,5 @@ if [ "${DY_BOOT_OPTION_BOOT_MODE}" -eq 1 ] && [ -f "${VOILA_NOTEBOOK}" ]; then
 else
     ls -la /usr/local/bin/start-notebook.sh
     # call the notebook with the basic parameters
-    start-notebook.sh --config .jupyter_config.json "$@" --LabApp.default_url='/lab/tree/workspace/README.ipynb' 
+    start-notebook.py --config .jupyter_config.json "$@" --LabApp.default_url='/lab/tree/workspace/README.ipynb' 
 fi
