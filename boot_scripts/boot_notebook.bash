@@ -51,16 +51,9 @@ cat > .jupyter_config.json <<EOF
         "port": 8888,
         "preferred_dir": "${NOTEBOOK_BASE_DIR}/workspace/",
         "quit_button": false,
-        "root_dir": "${NOTEBOOK_BASE_DIR}",
         "token": "${NOTEBOOK_TOKEN}",
         "webbrowser_open_new": 0
     },
-    "LabApp": {
-        "tornado_settings": {
-            "page_config_data": {
-                "buildCheck": false,
-                "buildAvailable": false,
-            },
     "KernelSpecManager": {
         "allowed_kernelspecs": ["ads_venv"]
     },

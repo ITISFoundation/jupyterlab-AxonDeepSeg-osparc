@@ -162,7 +162,6 @@ WORKDIR /tmp
 RUN mamba install --yes \
     'jupyterlab' \
     'notebook' \
-    #'jupyterlab_latex' \
     'voila' \
     'jupyterlab-git' && \
     jupyter server --generate-config && \
