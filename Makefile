@@ -63,12 +63,12 @@ compose-spec: ## runs ooil to assemble the docker-compose.yml file
 		sh -c "cd /${DOCKER_IMAGE_NAME} && ooil compose"
 
 build: | compose-spec	## build docker image
-	docker-compose build
+	docker compose build
 
 # To test built service locally -------------------------------------------------------------------------
 .PHONY: run-local
 run-local:	## runs image with local configuration
-	docker-compose --file docker-compose-local.yml up
+	docker compose --file docker-compose-local.yml up
 
 .PHONY: publish-local
 publish-local: ## push to local oSPARC throw away registry to test integration
@@ -112,7 +112,7 @@ info: ## general info
 	@echo ' python                      : $(shell python3 --version 2>/dev/null || echo not found )'
 	@echo ' docker                      : $(shell docker --version)'
 	@echo ' docker buildx               : $(shell docker buildx version)'
-	@echo ' docker-compose              : $(shell docker-compose --version)'
+	@echo ' docker compose              : $(shell docker compose --version)'
 
 # MISC -----------------------------------------------------------------
 
