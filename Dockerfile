@@ -113,8 +113,8 @@ RUN set -x && \
         --prefix="${CONDA_DIR}" \
         --yes \
         "${PYTHON_SPECIFIER}" \
-        'mamba' \
-        'jupyter_core' && \
+        'mamba==1.5.8' \
+        'jupyter_core==5.7.2' && \
     rm -rf /tmp/bin/ && \
     # Pin major.minor version of python
     # https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#preventing-packages-from-updating-pinning
@@ -160,10 +160,10 @@ USER ${NB_UID}
 # files across image layers when the permissions change
 WORKDIR /tmp
 RUN mamba install --yes \
-    'jupyterlab' \
-    'notebook' \
-    'voila' \
-    'jupyterlab-git' && \
+    'jupyterlab==4.1.8' \
+    'notebook==7.1.3' \
+    'voila==0.5.6' \
+    'jupyterlab-git==0.50.0' && \
     jupyter server --generate-config && \
     mamba clean --all -f -y && \
     npm cache clean --force && \
@@ -192,20 +192,17 @@ ENV ADS_SHA=9ab16452a1411788e845e5c1e2cd2301ba5e81b5
 RUN git clone https://github.com/neuropoly/axondeepseg.git && \
     cd axondeepseg && \
     git checkout -b release ${ADS_SHA} && \
-    conda init bash && \
-    conda env create
+    mamba init bash && \
+    mamba env create
 
-# "Activate" the conda env
 SHELL ["conda", "run", "-n", "ads_venv", "/bin/bash", "-c" ]
 
-#opencv requested by ACA
-RUN  cd axondeepseg && \
-     pip install -e . plugins/ && \
-     pip install opencv-python && \ 
-     axondeepseg_test
+RUN cd axondeepseg && \
+    pip install -e . plugins/ && \
+    pip install opencv-python && \
+    axondeepseg_test
 
-# Create a jupyter kernel for AxonDeepSeg
-RUN conda install -c conda-forge ipykernel && \
+RUN mamba install -c conda-forge ipykernel==6.29.3 && \
     python -m ipykernel install --user --name=ads_venv
 
 # Install torch for AxonDeepSeg+GPU
